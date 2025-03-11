@@ -1,0 +1,37 @@
+[
+   {
+      "id": 1,
+      "titulo": "Estudar TypeScript",
+      "descricao": "Revisar map, filter e reduce.",
+      "categoria": "Estudos",
+      "isChecked": false
+   },
+   {
+      "id": 2,
+      "titulo": "Fazer compras",
+      "descricao": "Comprar frutas e vegetais.",
+      "categoria": "Lazer",
+      "isChecked": true
+   },
+   {
+      "id": 3,
+      "titulo": "Trabalhar no projeto",
+      "descricao": "Finalizar API do cliente.",
+      "categoria": "Trabalho",
+      "isChecked": false
+   },
+   {
+      "id": 4,
+      "titulo": "Ler um livro",
+      "descricao": "Terminar o livro de ficção.",
+      "categoria": "Lazer",
+      "isChecked": false
+   },
+   {
+      "id": 5,
+      "titulo": "Aula de Álgebra Linear",
+      "descricao": "Assistir à aula gravada.",
+      "categoria": "Estudos",
+      "isChecked": true
+   }
+]
