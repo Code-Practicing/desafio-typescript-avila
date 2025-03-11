@@ -1,3 +1,38 @@
+//? Leitura de Arquivo JSON:
+// // * Carregar a lista de tarefas de um arquivo JSON. Cada tarefa deve ser representada por um objeto (tipado, porque estamos usando typescript - você pode criar um arquivo tarefa.ts em um diretório como src/types para criar o tipo) com os campos id, titulo, descricao, categoria e isChecked.
+
+//? Exibição das Tarefas:
+// // * Listar todas as tarefas, mostrando id, titulo, categoria e o status da tarefa (se está "Concluída" ou "Pendente").
+
+//? Filtragem das Tarefas:
+// // * Filtrar e exibir as tarefas que estão concluídas (ou seja, aquelas com isChecked = true).
+// // * Filtrar e exibir as tarefas de uma categoria específica fornecida como argumento (por exemplo, "Estudos").
+
+//? Contagem das Tarefas:
+// // * Contar o número total de tarefas.
+// // * Contar o número de tarefas que estão concluídas.
+// // * Usar a função reduce para contar a quantidade de tarefas concluídas e pendentes.
+
+//? Resumo das Tarefas:
+// // * Criar e exibir um resumo das tarefas utilizando a função map. O resumo deve conter apenas o titulo da tarefa seguido de seu status ("Concluída" ou "Pendente").
+
+//? Uso de Tipagem:
+// // * Definir uma interface Tarefa em TypeScript que especifique os tipos de dados esperados para cada campo da tarefa.
+// // * Tipar todas as funções e variáveis corretamente, utilizando o sistema de tipagem do TypeScript para garantir segurança e clareza no código.
+
+//-----------------
+
+//? Funções Esperadas:
+// //  * listarTarefas(tarefas: Tarefa[]): Exibe todas as tarefas.
+// //  * resumoDasTarefas(tarefas: Tarefa[]): Retorna um resumo das tarefas (titulo + status).
+// //  * tarefasConcluidas(tarefas: Tarefa[]): Retorna apenas as tarefas concluídas.
+// //  * filtrarPorCategoria(tarefas: Tarefa[], categoria: string): Filtra as tarefas por categoria.
+// // * contarTarefasConcluidas(tarefas: Tarefa[]): Retorna o número de tarefas concluídas.
+// // * contarTotalTarefas(tarefas: Tarefa[]): Retorna o número total de tarefas.
+// // * contarConcluidasEPendentes(tarefas: Tarefa[]): Usa a função reduce para contar as tarefas concluídas e pendentes.
+
+//? -----------
+
 import tasks from "./data/tarefas.json";
 
 const App = () => {
@@ -23,12 +58,8 @@ const App = () => {
          "Lista de Tarefas:\n" +
             tarefas
                .map(
-                  (tarefa) =>
-                     `${tarefa.id}. ${tarefa.titulo} - ${tarefa.categoria} [${
-                        tarefa.isChecked ? "Concluída" : "Pendente"
-                     }]`
-               )
-               .join("\n")
+                  (tarefa) => `${tarefa.id}. ${tarefa.titulo} - ${tarefa.categoria} [${tarefa.isChecked ? "Concluída" : "Pendente"}]`
+               ).join("\n")
       );
    }
 
@@ -44,12 +75,8 @@ const App = () => {
          "Resumo das Tarefas:\n" +
             tarefas
                .map(
-                  (tarefa) =>
-                     `${tarefa.titulo} - ${
-                        tarefa.isChecked ? "Concluída" : "Pendente"
-                     }`
-               )
-               .join("\n")
+                  (tarefa) => `${tarefa.titulo} - ${tarefa.isChecked ? "Concluída" : "Pendente"}`
+               ).join("\n")
       );
    }
 
@@ -66,12 +93,9 @@ const App = () => {
          "Tarefas Concluídas:\n" +
             tarefasConcluidas
                .map(
-                  (tarefa) =>
-                     `${tarefa.id}. ${tarefa.titulo} - ${tarefa.categoria} [${
-                        tarefa.isChecked ? "Concluído" : "Pendente"
+                  (tarefa) => `${tarefa.id}. ${tarefa.titulo} - ${tarefa.categoria} [${tarefa.isChecked ? "Concluído" : "Pendente"
                      }]`
-               )
-               .join("\n")
+               ).join("\n")
       );
    }
 
@@ -81,21 +105,16 @@ const App = () => {
 
    function filtrarPorCategoria(tarefas: Tarefa[], categoria: string): void {
       const tarefasFiltradas = tarefas.filter(
-         (tarefa) =>
-            !categoria ||
-            tarefa.categoria.toLowerCase() === categoria.toLowerCase()
+         (tarefa) => !categoria || tarefa.categoria.toLowerCase() === categoria.toLowerCase()
       );
 
       console.log(
          'Tarefas na categoria "Estudos": \n' +
             tarefasFiltradas
                .map(
-                  (tarefa) =>
-                     `${tarefa.id}. ${tarefa.titulo} - ${tarefa.categoria} [${
-                        tarefa.isChecked ? "Concluído" : "Pendente"
+                  (tarefa) => `${tarefa.id}. ${tarefa.titulo} - ${tarefa.categoria} [${tarefa.isChecked ? "Concluído" : "Pendente"
                      }]`
-               )
-               .join("\n")
+               ).join("\n")
       );
    }
 
@@ -140,7 +159,6 @@ const App = () => {
       const totalPendente = tarefas.reduce(function (accumulator, tarefa) {
          return accumulator + (tarefa.isChecked ? 0 : 1);
       }, 0);
-      
       console.log(`Tarefas Concluídas: ${totalConcluida}, Tarefas Pendentes: ${totalPendente}`);
    }
 
@@ -160,36 +178,3 @@ const App = () => {
 };
 
 export default App;
-
-//? Leitura de Arquivo JSON:
-// // * Carregar a lista de tarefas de um arquivo JSON. Cada tarefa deve ser representada por um objeto (tipado, porque estamos usando typescript - você pode criar um arquivo tarefa.ts em um diretório como src/types para criar o tipo) com os campos id, titulo, descricao, categoria e isChecked.
-
-//? Exibição das Tarefas:
-// // * Listar todas as tarefas, mostrando id, titulo, categoria e o status da tarefa (se está "Concluída" ou "Pendente").
-
-//? Filtragem das Tarefas:
-// // * Filtrar e exibir as tarefas que estão concluídas (ou seja, aquelas com isChecked = true).
-// // * Filtrar e exibir as tarefas de uma categoria específica fornecida como argumento (por exemplo, "Estudos").
-
-//? Contagem das Tarefas:
-// // * Contar o número total de tarefas.
-// // * Contar o número de tarefas que estão concluídas.
-// // * Usar a função reduce para contar a quantidade de tarefas concluídas e pendentes.
-
-//? Resumo das Tarefas:
-// // * Criar e exibir um resumo das tarefas utilizando a função map. O resumo deve conter apenas o titulo da tarefa seguido de seu status ("Concluída" ou "Pendente").
-
-//? Uso de Tipagem:
-// // * Definir uma interface Tarefa em TypeScript que especifique os tipos de dados esperados para cada campo da tarefa.
-// // * Tipar todas as funções e variáveis corretamente, utilizando o sistema de tipagem do TypeScript para garantir segurança e clareza no código.
-
-//-----------------
-
-//? Funções Esperadas:
-// //  * listarTarefas(tarefas: Tarefa[]): Exibe todas as tarefas.
-// //  * resumoDasTarefas(tarefas: Tarefa[]): Retorna um resumo das tarefas (titulo + status).
-// //  * tarefasConcluidas(tarefas: Tarefa[]): Retorna apenas as tarefas concluídas.
-// //  * filtrarPorCategoria(tarefas: Tarefa[], categoria: string): Filtra as tarefas por categoria.
-// // * contarTarefasConcluidas(tarefas: Tarefa[]): Retorna o número de tarefas concluídas.
-// // * contarTotalTarefas(tarefas: Tarefa[]): Retorna o número total de tarefas.
-// // * contarConcluidasEPendentes(tarefas: Tarefa[]): Usa a função reduce para contar as tarefas concluídas e pendentes.
